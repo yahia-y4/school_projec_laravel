@@ -1,0 +1,24 @@
+.control-buts-div {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.control-one-but {
+    width: 300px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    font-size: 20px;
+}
+
+.control-one-but:hover {
+    transform: scale(1.01);
+}

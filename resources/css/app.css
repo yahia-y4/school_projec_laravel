@@ -27,7 +27,7 @@ body {
     border-radius: 10px;
     display: flex;
     border: 1px solid #ebedf871;
-
+color: #fff;
     flex-direction: column;
 
 }
@@ -107,3 +107,52 @@ button:hover{
 }
 
 /* -------------- */
+
+/* تنسيق حاوية عرض معلومة  */
+.info-div{
+    direction: rtl;
+    color: #fff;
+    font-size: 18px;
+}
+.info-div p::before{
+    content: "-";
+}
+/* ---------------- */
+
+
+/* تنسيق الشريط العلوي  */
+.nav-bar{
+   border-bottom: 1px solid #fff;
+    height: 7vh;
+    direction: rtl;
+    display: flex;
+    align-items: center;
+}
+.account-icon{
+    width: 50px;
+    height: 50px;
+}
+/* -------------- */
+
+/* تنسيق الحاوية التي تحوي على مكونات كل صفحة بدون الشريط العلوي */
+.main-page{
+    height: 93vh;
+   
+}
+/* /------------------ */
+
+
+
+/* /عنوان الصفحات  */
+.page-title{
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: #fff;
+}
+/* --------------- */
+
+

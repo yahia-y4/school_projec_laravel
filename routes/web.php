@@ -9,3 +9,7 @@ Route::get('/', function () {
 route::get('/login', function () {
     return view('login');
 });
+
+route::get('/dashboard',function(){
+    return view('dashboard');
+});

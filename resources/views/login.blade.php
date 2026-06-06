@@ -10,7 +10,11 @@
     <title>login</title>
 </head>
 
+
+
+
 <body>
+   
     <div class="main-flex-center">
         <div class="container-div login-div">
             @if (true)
@@ -18,7 +22,7 @@
                     <!-- ---------- -->
                     <div class="input-label-div">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" >
+                        <input type="email" name="email" id="email">
                     </div>
                     <!-- ------------- -->
 
@@ -32,7 +36,13 @@
                     </div>
                 </form>
             @else
-                <h1>you are already logged in</h1>
+               <div class = "info-div">
+                <p> البريد الالكتروني : {{"yahia@gmail.com"}}</p>
+               </div>
+                <div class = "buttons-div">
+                        <button class = "">تسجيل الخروج</button>
+                    </div>
+
             @endif
 
 
