@@ -1,46 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite(['resources/css/dashboard.css'])
-    <title>لوحة التحكم</title>
-</head>
 
-<body>
-    <div class="nav-bar">
-        <div class="account-icon">
-          
-        </div>
-    </div>
-    <div class="main-page">
-        <div class="page-title">
-            <p>لوحة التحكم</p>
-        </div>
+    <head>
 
-        <div class="control-buts-div">
+        @vite(['resources/css/dashboard.css'])
+        <title>لوحة التحكم</title>
+    </head>
 
-            {{-- -------- --}}
-            <div class="container-div control-one-but">
-               <p> ادارة الطلاب</p>
+    <body>
+
+        <div class="main-page">
+            <div class="page-title">
+                <p>لوحة التحكم</p>
             </div>
-          
-            {{-- -------- --}}
-            <div class="container-div control-one-but">
-               <p> ادارة المعلمين</p>
+
+            <div class="control-buts-div">
+
+                {{-- -------- --}}
+                    <a class = "container-div control-one-but" href="/dashboard/students">
+                        <p> ادارة الطلاب</p>
+
+                    </a>
+
+                {{-- -------- --}}
+                <a class="container-div control-one-but" href="#">
+                    <p> ادارة المعلمين</p>
+                </a>
+
+                {{-- -------- --}}
+                <a class="container-div control-one-but" href="#">
+                    <p> ادارة الصفوف</p>
+                </a>
+                {{-- -------- --}}
             </div>
-       
-            {{-- -------- --}}
-            <div class="container-div control-one-but">
-               <p> ادارة الصفوف</p>
-            </div>
-            {{-- -------- --}}
         </div>
-    </div>
 
-</body>
+    </body>
 
-</html>
+</x-app-layout>
