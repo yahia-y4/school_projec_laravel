@@ -23,12 +23,12 @@
                     </a>
 
                 {{-- -------- --}}
-                <a class="container-div control-one-but" href="#">
+                <a class="container-div control-one-but" href="/dashboard/teachers">
                     <p> ادارة المعلمين</p>
                 </a>
 
                 {{-- -------- --}}
-                <a class="container-div control-one-but" href="#">
+                <a class="container-div control-one-but" href="/dashboard/classrooms">
                     <p> ادارة الصفوف</p>
                 </a>
                 {{-- -------- --}}

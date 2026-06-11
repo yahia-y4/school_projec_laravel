@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\ClassroomsController;
  
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +17,18 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/dashboard/students',[StudentController::class,'index']);
+
     Route::get('/dashboard/teachers',[TeachersController::class,'index']);
+
+    Route::get('/dashboard/classrooms',[ClassroomsController::class,'index']);
+
+    Route::post('/dashboard/classrooms',[ClassroomsController::class,'store']);
     
 
 });
