@@ -80,11 +80,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="showStdInfo()">
-                                <td>يحيى</td>
-                                <td>767565454</td>
-                                <td>2004/1/1</td>
-                            </tr>
+                            @if ($students)
+                                @foreach ($students as $std)
+                                    <tr onclick="showStdInfo()">
+                                        <td>{{ $std->name }}</td>
+                                        <td>{{ $std->phone }}</td>
+                                        <td>{{ $std->birth_date }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
                         </tbody>
                     </table>
                 </div>
