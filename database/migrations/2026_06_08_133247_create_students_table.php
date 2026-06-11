@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("email",150)->unique();
-            $table->date(" birth_date")->nullable();
+            $table->date("birth_date")->nullable();
             $table->string("phone",20)->nullable();
             $table->foreignId("classroom_id")->constrained("classrooms")->cascadeOnDelete();
             $table->timestamps();

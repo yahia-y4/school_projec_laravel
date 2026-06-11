@@ -18,41 +18,50 @@
                 <p>--ادارة الطلاب--</p>
             </div>
             <div class="msin-page-2 students-mian-page">
+                <form class="container-div students-inputs-div" action="/dashboard/students" method="POST">
+                    @csrf
 
-                <form action="" class="container-div students-inputs-div">
                     {{-- -----الاسم------- --}}
                     <div class="input-label-div">
                         <label for="name">الاسم</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" name="name">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الاميل------- --}}
                     <div class="input-label-div">
                         <label for="email">البريد الالكتروني</label>
-                        <input type="email" id="email">
+                        <input type="email" id="email" name="email">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----تاريخ الميلاد------- --}}
                     <div class="input-label-div">
                         <label for="date">تاريخ الميلاد</label>
-                        <input type="date" id="date">
+                        <input type="date" id="date" name="birth_date">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الرقم------- --}}
                     <div class="input-label-div">
                         <label for="number">الرقم</label>
-                        <input type="text" id="number">
+                        <input type="text" id="number" name="phone">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الصف------- --}}
                     <div class="input-label-div">
                         <label for="class">الصف</label>
-                        <select name="class" id="class"></select>
+
+                        <select name="classroom_id" id="class">
+                            @if ($classrooms)
+                                @foreach ($classrooms as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
                     </div>
                     {{-- ---------------- --}}
 
                     <div class = "buttons-div">
-                        <button>اضافة</button>
+                        <button type="submit">اضافة</button>
                         <button>الغاء</button>
 
                     </div>

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/classrooms',[ClassroomsController::class,'index']);
 
     Route::post('/dashboard/classrooms',[ClassroomsController::class,'store']);
+    Route::post('/dashboard/students',[StudentController::class,'store']);
     
 
 });
