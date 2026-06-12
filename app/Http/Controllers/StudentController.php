@@ -27,4 +27,9 @@ class StudentController extends Controller
         return redirect('/dashboard/students');
 
     }
+
+    public function deleteStd($id){
+        Student::find($id)->delete();
+        return redirect('/dashboard/students');
+    }
 }

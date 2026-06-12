@@ -15,7 +15,7 @@
 
         <div class="main-page">
             <div class="page-title">
-                <p>--ادارة الطلاب--</p>
+                <p>ادارة الطلاب</p>
             </div>
             <div class="msin-page-2 students-mian-page">
                 <form class="container-div students-inputs-div" action="/dashboard/students" method="POST">
@@ -41,8 +41,8 @@
                     {{-- ---------------- --}}
                     {{-- -----الرقم------- --}}
                     <div class="input-label-div">
-                        <label for="number">الرقم</label>
-                        <input type="text" id="number" name="phone">
+                        <label for="phone">الرقم</label>
+                        <input type="text" id="phone" name="phone">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الصف------- --}}
@@ -62,7 +62,6 @@
 
                     <div class = "buttons-div">
                         <button type="submit">اضافة</button>
-                        <button>الغاء</button>
 
                     </div>
                 </form>
@@ -75,8 +74,12 @@
                         <thead>
                             <tr>
                                 <th>الاسم</th>
+                                <th>البريد الالكترون</th>
                                 <th>الرقم</th>
                                 <th>تاريخ الميلاد</th>
+                                <th> الصف</th>
+                                <th> </th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,8 +87,20 @@
                                 @foreach ($students as $std)
                                     <tr onclick="showStdInfo()">
                                         <td>{{ $std->name }}</td>
+                                        <td>{{ $std->email }}</td>
                                         <td>{{ $std->phone }}</td>
                                         <td>{{ $std->birth_date }}</td>
+                                        @foreach ($classrooms as $classroom)
+                                            @if ($classroom->id == $std->classroom_id)
+                                                <td>{{ $classroom->name }}</td>
+                                            @endif
+                                        @endforeach
+                                        <td onclick="showEdit()" class="table-buttun">تعديل</td>
+                                        <td class="table-buttun" style="background-color: rgba(255, 0, 0, 0.61)">
+                                            <a href="/dashboard/students/delete/{{ $std->id }}">حذف</a>
+                                        </td>
+
+
                                     </tr>
                                 @endforeach
                             @endif
@@ -94,25 +109,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- ---------//قائمة الطلاب//----------- --}}
-                {{-- -----------معلومات الطالب ------------- --}}
-                <div id="students-info-div" class = "container-div students-info-div">
-                    <h3 class ="info-std-title">معلومات الطالب</h3>
-
-                    <div class ="info-std-content">
-                        <p>الاسم : {{ 'يحيى' }}</p>
-                        <p>البريد الالكتروني : {{ 'yahia@gmail.com' }}</p>
-                        <p> تاريخ الميلاد : {{ '2004/1/1' }}</p>
-                        <p> رقم الهاتف : {{ '096517914' }}</p>
-                        <p> الصف الدراسي : {{ 'ثالث ثانوي' }}</p>
-                    </div>
-                    <div class="buttons-div">
-                        <button id="delete-std-but">حذف</button>
-                        <button id="edit-std-but">تعديل</button>
-                        <button id="cancel-std-but">الغاء</button>
-                    </div>
-                </div>
-                {{-- -----------//معلومات الطالب //------------- --}}
 
             </div>
 
@@ -153,7 +149,7 @@
 
                 <div class = "buttons-div">
                     <button>تعديل</button>
-                    <button>الغاء</button>
+                    <button onclick="hideEdit()" type="button">الغاء</button>
 
                 </div>
             </form>
