@@ -85,7 +85,7 @@
                         <tbody>
                             @if ($students)
                                 @foreach ($students as $std)
-                                    <tr onclick="showStdInfo()">
+                                    <tr>
                                         <td>{{ $std->name }}</td>
                                         <td>{{ $std->email }}</td>
                                         <td>{{ $std->phone }}</td>
@@ -95,7 +95,15 @@
                                                 <td>{{ $classroom->name }}</td>
                                             @endif
                                         @endforeach
-                                        <td onclick="showEdit()" class="table-buttun">تعديل</td>
+                                        <td onclick="showEdit(
+                                                {{ $std->id }},
+                                                {{ Js::from($std->name) }},
+                                                {{ Js::from($std->email) }},
+                                                {{ Js::from($std->birth_date) }},
+                                                {{ Js::from($std->phone) }},
+                                                {{ $std->classroom_id }},
+                                            )"
+                                            class="table-buttun" style="background-color: rgba(75, 172, 218, 0.664)">تعديل</td>
                                         <td class="table-buttun" style="background-color: rgba(255, 0, 0, 0.61)">
                                             <a href="/dashboard/students/delete/{{ $std->id }}">حذف</a>
                                         </td>
@@ -115,40 +123,47 @@
         </div>
         {{-- للتعديل ---------- --}}
         <div id="edit-page-id" class="edit-container-div">
-            <form action="" class="container-div students-inputs-div">
+            <form class="container-div students-inputs-div" id="form_edit" method="POST">
+                @csrf
+
                 {{-- -----الاسم------- --}}
                 <div class="input-label-div">
                     <label for="name">الاسم</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name_edit" name="name">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الاميل------- --}}
                 <div class="input-label-div">
                     <label for="email">البريد الالكتروني</label>
-                    <input type="email" id="email">
+                    <input type="email" id="email_edit" name="email">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----تاريخ الميلاد------- --}}
                 <div class="input-label-div">
-                    <label for="date">تاريخ الميلاد</label>
-                    <input type="date" id="date">
+                    <label for="birth_date">تاريخ الميلاد</label>
+                    <input type="date" id="birth_date_edit" name="birth_date">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الرقم------- --}}
                 <div class="input-label-div">
-                    <label for="number">الرقم</label>
-                    <input type="text" id="number">
+                    <label for="phone">الرقم</label>
+                    <input type="text" id="phone_edit" name="phone">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الصف------- --}}
                 <div class="input-label-div">
-                    <label for="class">الصف</label>
-                    <select name="class" id="class"></select>
+                    <label for="classroom_edit">الصف</label>
+                    <select id="classroom_edit" name="classroom_id">
+                        @foreach ($classrooms as $classroom)
+                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 {{-- ---------------- --}}
 
                 <div class = "buttons-div">
-                    <button>تعديل</button>
+
+                    <button type="submit">تعديل</button>
                     <button onclick="hideEdit()" type="button">الغاء</button>
 
                 </div>

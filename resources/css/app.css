@@ -66,6 +66,7 @@ body {
     border: 1px solid #ffffff;
     background-color: #1b1f3b;
     color: #fff;
+    direction: rtl;
 
 }
 
@@ -77,6 +78,7 @@ body {
     border: 1px solid #ffffff;
     background-color: #1b1f3b;
     color: #fff;
+    direction: rtl;
 }
 .input-label-div textarea{
         width: 100%;
@@ -88,6 +90,7 @@ body {
     border: 1px solid #ffffff;
     background-color: #1b1f3b;
     color: #fff;
+    direction: rtl;
 
 }
 

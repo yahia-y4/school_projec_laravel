@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/classrooms',[ClassroomsController::class,'store']);
     Route::post('/dashboard/students',[StudentController::class,'store']);
     Route::get('/dashboard/students/delete/{id}',[StudentController::class,'deleteStd']);
+    Route::post('/dashboard/students/edit/{id}',[StudentController::class,'editStd']);
     
 
 });
