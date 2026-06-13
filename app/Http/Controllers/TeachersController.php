@@ -27,4 +27,9 @@ class TeachersController extends Controller
         $teacher->save();
         return redirect("/dashboard/teachers");
     }
+    public function deleteTeacher($id){
+        Teacher::find($id)->delete();
+        return redirect("/dashboard/teachers");
+
+    }
 }

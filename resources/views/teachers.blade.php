@@ -105,7 +105,7 @@
                                             )"
                                             class="table-buttun" style="background-color: rgba(75, 172, 218, 0.664)">تعديل</td>
                                         <td class="table-buttun" style="background-color: rgba(255, 0, 0, 0.61)">
-                                            <a href="/dashboard/students/delete/{{ $teacher->id }}">حذف</a>
+                                            <a href="/dashboard/teachers/delete/{{ $teacher->id }}">حذف</a>
                                         </td>
 
 

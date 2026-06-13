@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    
+
     // -------classrooms routes------
     Route::get('/dashboard/classrooms',[ClassroomsController::class,'index']);
     Route::post('/dashboard/classrooms',[ClassroomsController::class,'store']);
@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     //--------teachers routes------------  
       Route::get('/dashboard/teachers',[TeachersController::class,'index']);
       Route::post('/dashboard/teachers',[TeachersController::class,'store']);
+    Route::get('/dashboard/teachers/delete/{id}',[TeachersController::class,'deleteTeacher']);
     //-----------------------------------
 
 });
