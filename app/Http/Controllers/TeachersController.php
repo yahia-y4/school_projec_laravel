@@ -32,4 +32,15 @@ class TeachersController extends Controller
         return redirect("/dashboard/teachers");
 
     }
+    public function editTeacher(Request $request, $id){
+        $teacher = Teacher::find($id);
+        if(!$teacher) return redirect("/dashboard/teachers");
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone;
+        $teacher->specialization = $request->specialization;
+        $teacher->classroom_id = $request->classroom_id ;
+        $teacher->save();
+        return redirect("/dashboard/teachers");
+    }
 }

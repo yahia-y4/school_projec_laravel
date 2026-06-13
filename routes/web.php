@@ -35,9 +35,10 @@ Route::middleware('auth')->group(function () {
     //---------------------------
 
     //--------teachers routes------------  
-      Route::get('/dashboard/teachers',[TeachersController::class,'index']);
-      Route::post('/dashboard/teachers',[TeachersController::class,'store']);
+    Route::get('/dashboard/teachers',[TeachersController::class,'index']);
+    Route::post('/dashboard/teachers',[TeachersController::class,'store']);
     Route::get('/dashboard/teachers/delete/{id}',[TeachersController::class,'deleteTeacher']);
+    Route::post('/dashboard/teachers/edit/{id}',[TeachersController::class,'editTeacher']);
     //-----------------------------------
 
 });

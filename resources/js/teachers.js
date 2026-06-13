@@ -1,9 +1,9 @@
-function showEdit(id, name, email, birth_date, phone, classroom_id) {
+function showEdit(id, name, email, specialization, phone, classroom_id) {
     const form = document.getElementById("form_edit");
-    form.action = `/dashboard/students/edit/${id}`;
+    form.action = `/dashboard/teachers/edit/${id}`;
     document.getElementById("name_edit").value = name;
     document.getElementById("email_edit").value = email;
-    document.getElementById("birth_date_edit").value = birth_date;
+    document.getElementById("specialization_edit").value = specialization;
     document.getElementById("phone_edit").value = phone;
     document.getElementById("classroom_edit").value = classroom_id;
 
