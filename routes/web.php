@@ -17,22 +17,27 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/dashboard/students',[StudentController::class,'index']);
-
-    Route::get('/dashboard/teachers',[TeachersController::class,'index']);
-
+    
+    // -------classrooms routes------
     Route::get('/dashboard/classrooms',[ClassroomsController::class,'index']);
-
     Route::post('/dashboard/classrooms',[ClassroomsController::class,'store']);
+    //-------------------------------
+
+
+    // -------students routes------
+    Route::get('/dashboard/students',[StudentController::class,'index']);
     Route::post('/dashboard/students',[StudentController::class,'store']);
     Route::get('/dashboard/students/delete/{id}',[StudentController::class,'deleteStd']);
     Route::post('/dashboard/students/edit/{id}',[StudentController::class,'editStd']);
-    
+    //---------------------------
+
+    //--------teachers routes------------  
+      Route::get('/dashboard/teachers',[TeachersController::class,'index']);
+      Route::post('/dashboard/teachers',[TeachersController::class,'store']);
+    //-----------------------------------
 
 });
 

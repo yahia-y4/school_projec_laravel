@@ -18,7 +18,7 @@
                 <p>ادارة الطلاب</p>
             </div>
             <div class="msin-page-2 students-mian-page">
-                <form class="container-div students-inputs-div" action="/dashboard/students" method="POST">
+                <form class="container-div students-inputs-div" action="/dashboard/teachers" method="POST">
                     @csrf
 
                     {{-- -----الاسم------- --}}
@@ -35,8 +35,8 @@
                     {{-- ---------------- --}}
                     {{-- -----تاريخ الميلاد------- --}}
                     <div class="input-label-div">
-                        <label for="date">تاريخ الميلاد</label>
-                        <input type="date" id="date" name="birth_date">
+                        <label for="specialization">التخصص </label>
+                        <input  id="specialization" name="specialization">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الرقم------- --}}
@@ -76,36 +76,36 @@
                                 <th>الاسم</th>
                                 <th>البريد الالكترون</th>
                                 <th>الرقم</th>
-                                <th>تاريخ الميلاد</th>
+                                <th>التخصص </th>
                                 <th> الصف</th>
                                 <th> </th>
                                 <th> </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($students)
-                                @foreach ($students as $std)
+                            @if ($teachers)
+                                @foreach ($teachers as $teacher)
                                     <tr>
-                                        <td>{{ $std->name }}</td>
-                                        <td>{{ $std->email }}</td>
-                                        <td>{{ $std->phone }}</td>
-                                        <td>{{ $std->birth_date }}</td>
+                                        <td>{{ $teacher->name }}</td>
+                                        <td>{{ $teacher->email }}</td>
+                                        <td>{{ $teacher->phone }}</td>
+                                        <td>{{ $teacher->birth_date }}</td>
                                         @foreach ($classrooms as $classroom)
-                                            @if ($classroom->id == $std->classroom_id)
+                                            @if ($classroom->id == $teacher->classroom_id)
                                                 <td>{{ $classroom->name }}</td>
                                             @endif
                                         @endforeach
                                         <td onclick="showEdit(
-                                                {{ $std->id }},
-                                                {{ Js::from($std->name) }},
-                                                {{ Js::from($std->email) }},
-                                                {{ Js::from($std->birth_date) }},
-                                                {{ Js::from($std->phone) }},
-                                                {{ $std->classroom_id }},
+                                                {{ $teacher->id }},
+                                                {{ Js::from($teacher->name) }},
+                                                {{ Js::from($teacher->email) }},
+                                                {{ Js::from($teacher->specialization) }},
+                                                {{ Js::from($teacher->phone) }},
+                                                {{ $teacher->classroom_id }},
                                             )"
                                             class="table-buttun" style="background-color: rgba(75, 172, 218, 0.664)">تعديل</td>
                                         <td class="table-buttun" style="background-color: rgba(255, 0, 0, 0.61)">
-                                            <a href="/dashboard/students/delete/{{ $std->id }}">حذف</a>
+                                            <a href="/dashboard/students/delete/{{ $teacher->id }}">حذف</a>
                                         </td>
 
 
@@ -140,8 +140,8 @@
                 {{-- ---------------- --}}
                 {{-- -----تاريخ الميلاد------- --}}
                 <div class="input-label-div">
-                    <label for="birth_date">تاريخ الميلاد</label>
-                    <input type="date" id="birth_date_edit" name="birth_date">
+                    <label for="specialization">تاريخ الميلاد</label>
+                    <input type="date" id="specialization_edit" name="specialization">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الرقم------- --}}
