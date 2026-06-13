@@ -1,20 +1,19 @@
-function showStdInfo(){
-    const teacher = document.getElementById("teachers-info-div")
-    if(teacher) teacher.style.display = "flex";
+function showEdit(id, name, email, birth_date, phone, classroom_id) {
+    const form = document.getElementById("form_edit");
+    form.action = `/dashboard/students/edit/${id}`;
+    document.getElementById("name_edit").value = name;
+    document.getElementById("email_edit").value = email;
+    document.getElementById("birth_date_edit").value = birth_date;
+    document.getElementById("phone_edit").value = phone;
+    document.getElementById("classroom_edit").value = classroom_id;
+
+    const edit = document.getElementById("edit-page-id");
+    if (edit) edit.style.display = "flex";
+}
+function hideEdit() {
+    const edit = document.getElementById("edit-page-id");
+    if (edit) edit.style.display = "none";
 }
 
-function hideStdInfo(){
-    const teacher = document.getElementById("teachers-info-div")
-    if(teacher) teacher.style.display = "none";
-}
-
-function showEdit(){
-    const edit = document.getElementById("edit-page-id")
-    if(edit) edit.style.display="flex"
-}
-
-window.showStdInfo = showStdInfo;  
-window.hideStdInfo = hideStdInfo;
-
-document.getElementById("cancel-teachers-but").onclick = () => hideStdInfo();
-document.getElementById("edit-teachers-but").onclick =()=>showEdit()
+window.showEdit = showEdit;
+window.hideEdit = hideEdit;

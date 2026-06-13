@@ -4,7 +4,10 @@
 <x-app-layout>
 
     <head>
+
         @vite(['resources/css/students.css', 'resources/js/teachers.js'])
+
+        <title>الطلاب</title>
     </head>
 
     <body>
@@ -12,45 +15,53 @@
 
         <div class="main-page">
             <div class="page-title">
-                <p>--ادارة المعلمين--</p>
+                <p>ادارة الطلاب</p>
             </div>
             <div class="msin-page-2 students-mian-page">
+                <form class="container-div students-inputs-div" action="/dashboard/students" method="POST">
+                    @csrf
 
-                <form action="" class="container-div students-inputs-div">
                     {{-- -----الاسم------- --}}
                     <div class="input-label-div">
                         <label for="name">الاسم</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" name="name">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الاميل------- --}}
                     <div class="input-label-div">
                         <label for="email">البريد الالكتروني</label>
-                        <input type="email" id="email">
+                        <input type="email" id="email" name="email">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----تاريخ الميلاد------- --}}
                     <div class="input-label-div">
-                        <label for="date"> التخصص</label>
-                        <input type="text" id="date">
+                        <label for="date">تاريخ الميلاد</label>
+                        <input type="date" id="date" name="birth_date">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الرقم------- --}}
                     <div class="input-label-div">
-                        <label for="number">الرقم</label>
-                        <input type="text" id="number">
+                        <label for="phone">الرقم</label>
+                        <input type="text" id="phone" name="phone">
                     </div>
                     {{-- ---------------- --}}
                     {{-- -----الصف------- --}}
                     <div class="input-label-div">
                         <label for="class">الصف</label>
-                        <select name="class" id="class"></select>
+
+                        <select name="classroom_id" id="class">
+                            @if ($classrooms)
+                                @foreach ($classrooms as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
                     </div>
                     {{-- ---------------- --}}
 
                     <div class = "buttons-div">
-                        <button>اضافة</button>
-                        <button>الغاء</button>
+                        <button type="submit">اضافة</button>
 
                     </div>
                 </form>
@@ -63,79 +74,97 @@
                         <thead>
                             <tr>
                                 <th>الاسم</th>
+                                <th>البريد الالكترون</th>
                                 <th>الرقم</th>
-                                <th> التخصص</th>
+                                <th>تاريخ الميلاد</th>
+                                <th> الصف</th>
+                                <th> </th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="showStdInfo()">
-                                <td>يحيى</td>
-                                <td>767565454</td>
-                                <td>عربي</td>
-                            </tr>
+                            @if ($students)
+                                @foreach ($students as $std)
+                                    <tr>
+                                        <td>{{ $std->name }}</td>
+                                        <td>{{ $std->email }}</td>
+                                        <td>{{ $std->phone }}</td>
+                                        <td>{{ $std->birth_date }}</td>
+                                        @foreach ($classrooms as $classroom)
+                                            @if ($classroom->id == $std->classroom_id)
+                                                <td>{{ $classroom->name }}</td>
+                                            @endif
+                                        @endforeach
+                                        <td onclick="showEdit(
+                                                {{ $std->id }},
+                                                {{ Js::from($std->name) }},
+                                                {{ Js::from($std->email) }},
+                                                {{ Js::from($std->birth_date) }},
+                                                {{ Js::from($std->phone) }},
+                                                {{ $std->classroom_id }},
+                                            )"
+                                            class="table-buttun" style="background-color: rgba(75, 172, 218, 0.664)">تعديل</td>
+                                        <td class="table-buttun" style="background-color: rgba(255, 0, 0, 0.61)">
+                                            <a href="/dashboard/students/delete/{{ $std->id }}">حذف</a>
+                                        </td>
+
+
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
                         </tbody>
                     </table>
                 </div>
-                {{-- ---------//قائمة الطلاب//----------- --}}
-                {{-- -----------معلومات الطالب ------------- --}}
-                <div id="teachers-info-div" class = "container-div students-info-div">
-                    <h3 class ="info-std-title">معلومات الطالب</h3>
-
-                    <div class ="info-std-content">
-                        <p>الاسم : {{ 'يحيى' }}</p>
-                        <p>البريد الالكتروني : {{ 'yahia@gmail.com' }}</p>
-                        <p> تاريخ الميلاد : {{ '2004/1/1' }}</p>
-                        <p> رقم الهاتف : {{ '096517914' }}</p>
-                        <p> الصف الدراسي : {{ 'ثالث ثانوي' }}</p>
-                    </div>
-                    <div class="buttons-div">
-                        <button id="delete-teachers-but">حذف</button>
-                        <button id="edit-teachers-but">تعديل</button>
-                        <button id="cancel-teachers-but">الغاء</button>
-                    </div>
-                </div>
-                {{-- -----------//معلومات الطالب //------------- --}}
 
             </div>
 
         </div>
         {{-- للتعديل ---------- --}}
         <div id="edit-page-id" class="edit-container-div">
-            <form action="" class="container-div students-inputs-div">
+            <form class="container-div students-inputs-div" id="form_edit" method="POST">
+                @csrf
+
                 {{-- -----الاسم------- --}}
                 <div class="input-label-div">
                     <label for="name">الاسم</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name_edit" name="name">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الاميل------- --}}
                 <div class="input-label-div">
                     <label for="email">البريد الالكتروني</label>
-                    <input type="email" id="email">
+                    <input type="email" id="email_edit" name="email">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----تاريخ الميلاد------- --}}
                 <div class="input-label-div">
-                    <label for="date">تاريخ الميلاد</label>
-                    <input type="date" id="date">
+                    <label for="birth_date">تاريخ الميلاد</label>
+                    <input type="date" id="birth_date_edit" name="birth_date">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الرقم------- --}}
                 <div class="input-label-div">
-                    <label for="number">الرقم</label>
-                    <input type="text" id="number">
+                    <label for="phone">الرقم</label>
+                    <input type="text" id="phone_edit" name="phone">
                 </div>
                 {{-- ---------------- --}}
                 {{-- -----الصف------- --}}
                 <div class="input-label-div">
-                    <label for="class">الصف</label>
-                    <select name="class" id="class"></select>
+                    <label for="classroom_edit">الصف</label>
+                    <select id="classroom_edit" name="classroom_id">
+                        @foreach ($classrooms as $classroom)
+                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 {{-- ---------------- --}}
 
                 <div class = "buttons-div">
-                    <button>تعديل</button>
-                    <button>الغاء</button>
+
+                    <button type="submit">تعديل</button>
+                    <button onclick="hideEdit()" type="button">الغاء</button>
 
                 </div>
             </form>
